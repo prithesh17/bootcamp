@@ -3,11 +3,12 @@
 
 using namespace std;
 
-void print(vector<vector<int>> vec)
+
+void print(const vector<vector<int>>& vec)
 {
-    for (auto it : vec)
+    for (const auto& it : vec)
     {
-        for (auto val : it)
+        for (int val : it)
         {
             cout << val << " ";
         }
@@ -15,47 +16,45 @@ void print(vector<vector<int>> vec)
     }
 }
 
-vector<vector<int>> fun(vector<int> vec, int target, vector<vector<int>> result, vector<int> ans, int sum, int index)
+
+
+void findSum(int index, vector<int>& v, vector<int> ans, int sum, int k, vector<vector<int>>& result)
 {
-    if (index == vec.size())
-    {
-        return result;
+    if (index >= v.size()) {
+        if (sum == k) {
+            result.push_back(ans);
+        }
+        return;
     }
-    ans.push_back(vec[index]);
-    sum += vec[index];
-    if (sum == target)
-    {
-        result.push_back(ans);
-    }
-    fun(vec,target,result,ans,sum,index+1);
+    ans.push_back(v[index]);
+    sum += v[index];
+    findSum(index + 1, v, ans, sum, k, result);
+    
+    sum -= v[index];
     ans.pop_back();
-    sum-=vec[index];
-    fun(vec,target,result,ans,sum,index+1);
+    findSum(index + 1, v, ans, sum, k, result);
 }
 
 
-vector<vector<int>> findSum(vector<int> vec, int target)
-{
-    vector<vector<int>> result;
-    vector<int> ans;
-    int sum = 0;
-    int index = 0;
-    vector<vector<int>> result = fun(vec, target, result, ans, sum, index);
-    return result;
-}
+
 int main()
 {
-    int size;
-    int target;
+    int size, target;
     cin >> size;
-    vector<int> v;
+    
+    vector<int> v(size);
     for (int i = 0; i < size; i++)
     {
-        int element;
-        cin >> element;
-        v.push_back(element);
+        cin >> v[i];
     }
     cin >> target;
-    vector<vector<int>> result = findSum(v, target);
+
+    vector<vector<int>> result;
+    vector<int> ans;
+
+    findSum(0,v,ans,0,target,result);
+
     print(result);
+
+    return 0;
 }
