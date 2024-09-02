@@ -1,1 +1,1 @@
-Top Triangle sum is : 52
+String with unique characters in order: purgatoy
