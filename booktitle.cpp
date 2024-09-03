@@ -1,10 +1,9 @@
 #include <iostream>
 #include <vector>
-#include <string>
 
 using namespace std;
 
-int linearSearch(const vector<string>& books, const string& title) {
+int linearSearch(vector<string> books, string title) {
     for (int i = 0; i < books.size(); ++i) {
         if (books[i] == title) {
             return i;
@@ -26,7 +25,7 @@ void selectionSort(vector<string>& books) {
     }
 }
 
-int binarySearch(const vector<string>& books, const string& title) {
+int binarySearch(vector<string> books,  string title) {
     int left = 0;
     int right = books.size() - 1;
     
@@ -100,7 +99,7 @@ int main() {
 
     selectionSort(books);
     cout << "Books after sorting:" << endl;
-    for (const auto& book : books) {
+    for (auto book : books) {
         cout << book << endl;
     }
 
