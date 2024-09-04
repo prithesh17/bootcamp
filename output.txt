@@ -1,1 +1,2 @@
-Total Water : 40
+Minimum Sum is 28
+Shortest path for MIN sum : 4 8 4 5 7 
